@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const Characters = ({characters}) => {
 
-    const {name, hair_color, gender, eye_color} = characters
+    const {name, hair_color, gender, eye_color, created} = characters
     
 
     return (
@@ -24,7 +24,7 @@ const Characters = ({characters}) => {
                         <span className="card-text">Hair: {hair_color}</span>
                         <br />
                         <p className="card-text">Eye-Color: {eye_color}</p>
-                        <Link to={`/character/`} className="btn btn-outline-primary mt-2">
+                        <Link to={`/character/${created}`} className="btn btn-outline-primary mt-2">
                             Lean more!
                         </Link>
                     </div>

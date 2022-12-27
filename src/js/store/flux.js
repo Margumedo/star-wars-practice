@@ -1,4 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
+	
 	return {
 		store: {
 			demo: [
@@ -13,12 +14,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			urlBase: 'https://swapi.dev/api/',
+			urlBase: 'https://www.swapi.tech/api/',
 			characters: [],
-			planets: [] 
+			planets: [],
+			elements: ["people","planets"]
 
 		},
 		actions: {
+
+			getData : ()=>{
+				let store = getStore();
+
+				try {
+					store.elements.forEach( async element => {
+						let response = await fetch(`${store.urlBase}${element}`)
+						if (response.ok){
+							let data = await response.json();
+							console.log(data.results);
+
+							data.results.forEach( async elementTwo=>{
+								let responseTwo = await fetch(elementTwo.url);
+								if(response.ok){
+									let dataTwo = await responseTwo.json();
+									console.log(dataTwo.result)
+									setStore({
+										...store,
+										[element]: [dataTwo.result]
+									})
+
+								}else{
+									console.log("Epa bro no funciono el segundo fecth")
+								}
+							})
+
+						}else{
+							console.log("Epa bro no funciono el primer fecth")
+						}
+
+					});
+					
+				} catch (error) {
+					console.log(`Epa bro explote con el siguiente error: ${error}`)
+				}
+			},
 
 			getCharacters : async ()=>{
 
