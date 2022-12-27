@@ -20,15 +20,15 @@ export const Home = () => {
 			<div className="container mt-5">
 				<Title Title={"Characters"} color={'danger'} />
 				<div className="container border border-danger slider-container d-flex ">					
-						{store.characters.map((character, index) => (
-							<Characters key={index} characters={character} />))
+						{store.people.map((character, index) => (
+							<Characters key={index} characters={character.properties} />))
 						}					
 				</div>
 
 				<Title Title={"Planets"} color={'danger'} />
 				<div className="container border border-danger slider-container d-flex ">					
 						{store.planets.map((planet, index) => (
-							<Planets key={index} planets={planet} />))
+							<Planets key={index} planets={planet.properties} />))
 						}					
 				</div>
 			</div>

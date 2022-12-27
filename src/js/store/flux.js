@@ -15,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			urlBase: 'https://www.swapi.tech/api/',
-			characters: [],
+			people: [],
 			planets: [],
 			elements: ["people","planets"]
 
@@ -30,16 +30,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 						let response = await fetch(`${store.urlBase}${element}`)
 						if (response.ok){
 							let data = await response.json();
-							console.log(data.results);
+							//console.log(data.results);
 
 							data.results.forEach( async elementTwo=>{
+								console.log(elementTwo.url)
 								let responseTwo = await fetch(elementTwo.url);
 								if(response.ok){
 									let dataTwo = await responseTwo.json();
 									console.log(dataTwo.result)
 									setStore({
 										...store,
-										[element]: [dataTwo.result]
+										[element]: [...store[element],dataTwo.result]
+										//planet:  store.planet, dataTwo.result
+										//people:  store.people, dataTwo.result
 									})
 
 								}else{
