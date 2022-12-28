@@ -21,14 +21,14 @@ export const Home = () => {
 				<Title Title={"Characters"} color={'danger'} />
 				<div className="container border border-danger slider-container d-flex ">					
 						{store.people.map((character, index) => (
-							<Characters key={index} characters={character.properties} />))
+							<Characters key={index} characters={character.properties} id={character.uid} />))
 						}					
 				</div>
 
 				<Title Title={"Planets"} color={'danger'} />
 				<div className="container border border-danger slider-container d-flex ">					
 						{store.planets.map((planet, index) => (
-							<Planets key={index} planets={planet.properties} />))
+							<Planets key={index} planets={planet.properties} id={planet.uid} />))
 						}					
 				</div>
 			</div>

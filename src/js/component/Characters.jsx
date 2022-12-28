@@ -6,7 +6,7 @@ import starWarsImage from '../../img/StarWars.png'
 //router-dom
 import { Link } from "react-router-dom";
 
-const Characters = ({characters}) => {
+const Characters = ({characters, id}) => {
 
     const {name, hair_color, gender, eye_color, created} = characters
     
@@ -24,14 +24,15 @@ const Characters = ({characters}) => {
                         <span className="card-text">Hair: {hair_color}</span>
                         <br />
                         <p className="card-text">Eye-Color: {eye_color}</p>
-                        <Link to={`/character/${created}`} className="btn btn-outline-primary mt-2">
-                            Lean more!
-                        </Link>
+                        <div className="d-flex justify-content-between">
+                            <Link to={`/character/${id}`} className="btn btn-outline-primary mt-2">
+                                Lean more!
+                            </Link>
+                            <button type="button" className="btn btn-outline-warning mt-2">C</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
-    
     );
 }
 
