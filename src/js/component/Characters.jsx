@@ -10,14 +10,13 @@ import { Link } from "react-router-dom";
 import '../../styles/home.css'
 
 //Context
-
 import {Context} from '../store/appContext.js'
 
 const Characters = ({characters, id}) => {
     
     const {actions} = useContext(Context)
 
-    const [heartIcon, setHeartIcon] = useState(true);
+    const [heartIcon, setHeartIcon] = useState(false);
 
     const {name, hair_color, gender, eye_color} = characters
     

@@ -17,7 +17,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			urlBase: 'https://www.swapi.tech/api/',
 			people: [],
 			planets: [],
-			elements: ["people","planets"],
+			vehicles:[],
+			elements: ["people","planets","vehicles"],
 			favorites: []
 
 		},
@@ -108,26 +109,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			addFavorites: (id)=>{
+
+				console.log(id)
 				let store = getStore();
 
-				let favorite = store.people.find(element=>element.uid == id )
-				console.log(id)
-				setStore(
-					{...store,
-						favorites: [...store.favorites,favorite]
-					})
+				let exist = store.favorites.find(element=>element._id == id );
+				if(!exist){
+					store.elements.forEach(item=>{
+						let favorite = store[item].find(elementTwo=>elementTwo._id == id )
+						console.log("----------")
+						console.log(favorite)
+						if(favorite){
+							setStore(
+								{...store,
+									favorites: [...store.favorites,favorite]
+								})
 
+						}
+					})
+	
+				}
+				
 			},
 
 			deleteFavorites: (id)=>{
 				let store = getStore();
 
-				let favorite = store.people.filter(element=>element.uid != id )
-				console.log(id)
-				setStore(
-					{...store,
-						favorites: [...store.favorites,favorite]
-					})
+				let favorite = store.favorites.filter(element=>element._id != id )
+				console.log("soy el favorito a elimianr")
+				console.log(favorite)
+				  setStore(
+					 {...store,
+						 favorites: favorite
+					 })
 
 			},
 

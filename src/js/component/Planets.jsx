@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useContext} from "react";
 
 //imagenes
 import starWarsImage from '../../img/StarWars.png'
@@ -6,9 +6,28 @@ import starWarsImage from '../../img/StarWars.png'
 //router-dom
 import { Link } from "react-router-dom";
 
+//Context
+import {Context} from '../store/appContext.js'
+
 const Planets = ({planets, id})=>{
 
+    const {actions} = useContext(Context)
+
     const{name, population, terrain} = planets
+
+    const [heartIcon, setHeartIcon] = useState(false);
+
+    const changeIcon = (id)=>{
+        console.log("Me ejecuto")
+        if(heartIcon){
+            setHeartIcon(false)
+        }else{
+            setHeartIcon(true)
+        }
+        console.log(heartIcon)
+        
+        actions.addFavorites(id);
+    }
 
     return(
         <div className="col-12 col-sm-6 col-md-4 col-lg-3 m-3 border border-primary ">
@@ -22,7 +41,12 @@ const Planets = ({planets, id})=>{
                     <Link to={`/planet/${id}`} className="btn btn-outline-primary mt-2">
                         Lean more!
                     </Link>
-                    <button type="button" className="btn btn-outline-warning mt-2"><i className="fa-regular fa-heart heart"></i></button>
+                    <button onClick={()=>changeIcon(id)} type="button" className="btn btn-outline-warning mt-2">
+                    {heartIcon
+                                ?<i className="fa-solid fa-heart"></i>
+                                :<i className="fa-regular fa-heart"></i>
+                                }    
+                    </button>
                 </div>
             </div>
         </div>
