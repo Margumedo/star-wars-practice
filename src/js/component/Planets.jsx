@@ -17,10 +17,13 @@ const Planets = ({planets, id})=>{
             <div className="card-body">
                 <h5 className="card-title"> <b>{name}</b> </h5><br />
                 <span className="card-text">Population: {population}</span><br />
-                <span className="card-text">Terrain: {terrain}</span><br />
-                <Link to={`/planet/${id}`} className="btn btn-outline-primary mt-4">
-                    Lean more!
-                </Link>
+                <p className="card-text">Terrain: {terrain}</p>
+                <div className="d-flex justify-content-between">
+                    <Link to={`/planet/${id}`} className="btn btn-outline-primary mt-2">
+                        Lean more!
+                    </Link>
+                    <button type="button" className="btn btn-outline-warning mt-2"><i className="fa-regular fa-heart heart"></i></button>
+                </div>
             </div>
         </div>
     </div>

@@ -17,7 +17,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			urlBase: 'https://www.swapi.tech/api/',
 			people: [],
 			planets: [],
-			elements: ["people","planets"]
+			elements: ["people","planets"],
+			favorites: []
 
 		},
 		actions: {
@@ -105,6 +106,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 				}
 			},
+
+			addFavorites: (id)=>{
+				let store = getStore();
+
+				let favorite = store.people.find(element=>element.uid == id )
+				console.log(id)
+				setStore(
+					{...store,
+						favorites: [...store.favorites,favorite]
+					})
+
+			},
+
+			deleteFavorites: (id)=>{
+				let store = getStore();
+
+				let favorite = store.people.filter(element=>element.uid != id )
+				console.log(id)
+				setStore(
+					{...store,
+						favorites: [...store.favorites,favorite]
+					})
+
+			},
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

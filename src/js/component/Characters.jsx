@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 //imagenes
 import starWarsImage from '../../img/StarWars.png'
@@ -6,10 +6,32 @@ import starWarsImage from '../../img/StarWars.png'
 //router-dom
 import { Link } from "react-router-dom";
 
-const Characters = ({characters, id}) => {
+//styles
+import '../../styles/home.css'
 
-    const {name, hair_color, gender, eye_color, created} = characters
+//Context
+
+import {Context} from '../store/appContext.js'
+
+const Characters = ({characters, id}) => {
     
+    const {actions} = useContext(Context)
+
+    const [heartIcon, setHeartIcon] = useState(true);
+
+    const {name, hair_color, gender, eye_color} = characters
+    
+    const changeIcon = (id)=>{
+        console.log("Me ejecuto")
+        if(heartIcon){
+            setHeartIcon(false)
+        }else{
+            setHeartIcon(true)
+        }
+        console.log(heartIcon)
+        
+        actions.addFavorites(id);
+    }
 
     return (
        
@@ -28,7 +50,12 @@ const Characters = ({characters, id}) => {
                             <Link to={`/character/${id}`} className="btn btn-outline-primary mt-2">
                                 Lean more!
                             </Link>
-                            <button type="button" className="btn btn-outline-warning mt-2">C</button>
+                            <button onClick={()=>changeIcon(id)} type="button" className="btn btn-outline-warning mt-2">
+                                {heartIcon
+                                ?<i className="fa-solid fa-heart"></i>
+                                :<i className="fa-regular fa-heart"></i>
+                                }
+                                </button>
                         </div>
                     </div>
                 </div>

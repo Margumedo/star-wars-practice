@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
+//context
+import {Context} from '../store/appContext.js'
+
 export const Navbar = () => {
+	
+	const {store, actions} = useContext(Context);
+
+	const deleteFav = (id)=>{
+		
+		actions.deleteFavorites(id);
+		console.log('borrar')
+		}
+
 	return (
 
 		<div className="container">
@@ -18,12 +30,12 @@ export const Navbar = () => {
 						<ul className="navbar-nav">
 							<li className="nav-item dropdown">
 								<a className="nav-link dropdown-toggle btn btn-primary text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Favorites <span className="bg-secondary rounded p-1" >0</span>
+									Favorites <span className="bg-secondary rounded p-1" >{store.favorites.length}</span>
 								</a>
 								<ul className="dropdown-menu">
-									<li><a className="dropdown-item" href="#">Action</a></li>
-									<li><a className="dropdown-item" href="#">Another action</a></li>
-									<li><a className="dropdown-item" href="#">Something else here</a></li>
+									{store.favorites.length >0
+									?store.favorites.map((item,index)=>(<li onClick={()=>deleteFav(item.uid)} key={index} ><a>{item.properties.name} <i className="fa-solid fa-trash"></i></a></li>))
+									: <div className="container text-center">(empty)</div>} 
 								</ul>
 							</li>
 						</ul>
