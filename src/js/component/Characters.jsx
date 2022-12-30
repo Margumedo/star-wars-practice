@@ -14,25 +14,10 @@ import {Context} from '../store/appContext.js'
 
 const Characters = ({characters, id}) => {
     
-    const {actions} = useContext(Context)
-
-    const [heartIcon, setHeartIcon] = useState(false);
+    const {store, actions} = useContext(Context)
 
     const {name, hair_color, gender, eye_color} = characters
     
-    
-
-    const changeIcon = (id)=>{
-        console.log("Me ejecuto")
-        if(heartIcon){
-            setHeartIcon(false)
-        }else{
-            setHeartIcon(true)
-        }
-        console.log(heartIcon)
-        
-        actions.addFavorites(id);
-    }
     return (
        
             <div className="col-12 col-sm-6 col-md-4 col-lg-3 m-3 border border-primary ">
@@ -50,8 +35,8 @@ const Characters = ({characters, id}) => {
                             <Link to={`/character/${id}`} className="btn btn-outline-primary mt-2">
                                 Lean more!
                             </Link>
-                            <button onClick={()=> changeIcon(id)} type="button" className="btn btn-outline-warning mt-2">
-                                {heartIcon 
+                            <button onClick={()=> actions.addFavorites(id)} type="button" className="btn btn-outline-warning mt-2">
+                                {store.favorites.find(element=>element._id == id ) 
                                 ?<i className="fa-solid fa-heart"></i>
                                 :<i className="fa-regular fa-heart"></i>
                                 }
