@@ -8,11 +8,7 @@ export const Navbar = () => {
 	
 	const {store, actions} = useContext(Context);
 
-	const deleteFav = (id)=>{
-		
-		actions.deleteFavorites(id);
-		// console.log(id)
-		}
+	
 
 	return (
 
@@ -29,12 +25,12 @@ export const Navbar = () => {
 					<div className="collapse navbar-collapse  justify-content-end" id="navbarNavDropdown">
 						<ul className="navbar-nav">
 							<li className="nav-item dropdown">
-								<a className="nav-link dropdown-toggle btn btn-primary text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<a className="nav-link dropdown-toggle btn btn-primary text-light" href="#" role="button" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
 									Favorites <span className="bg-secondary rounded" >{store.favorites.length}</span>
 								</a>
-								<ul className="dropdown-menu">
+								<ul className="dropdown-menu ">
 									{store.favorites.length >0
-									?store.favorites.map((item,index)=>(<li onClick={()=>deleteFav(item._id)} key={index} ><a className="dropdown-item" href="#">{item.properties.name} <i className="fa-solid fa-trash"></i></a></li>))
+									?store.favorites.map((item,index)=>(<li onClick={()=>actions.deleteFavorites(item._id)} key={index} ><a className="dropdown-item text-primary" href="#">{item.properties.name} <i className="fa-solid fa-trash text-dark"></i></a></li>))
 									: <div className="container text-center">(empty)</div>} 
 								</ul>
 							</li>

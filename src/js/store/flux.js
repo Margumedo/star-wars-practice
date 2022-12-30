@@ -2,24 +2,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 	
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
 			urlBase: 'https://www.swapi.tech/api/',
 			people: [],
 			planets: [],
 			vehicles:[],
 			elements: ["people","planets","vehicles"],
-			favorites: []
+			favorites: [],
+			heartIcon: false,
 
 		},
 		actions: {
@@ -112,6 +101,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				console.log(id)
 				let store = getStore();
+				let actions = getActions ();
 
 				let exist = store.favorites.find(element=>element._id == id );
 				if(!exist){
@@ -124,10 +114,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 								{...store,
 									favorites: [...store.favorites,favorite]
 								})
-
-						}
-					})
-	
+								
+							}
+						})
+				}else{
+					actions.deleteFavorites(id);
 				}
 				
 			},
@@ -144,6 +135,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					 })
 
 			},
+
+			
 
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {

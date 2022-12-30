@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 //imagenes
 import starWarsImage from '../../img/StarWars.png'
@@ -20,6 +20,8 @@ const Characters = ({characters, id}) => {
 
     const {name, hair_color, gender, eye_color} = characters
     
+    
+
     const changeIcon = (id)=>{
         console.log("Me ejecuto")
         if(heartIcon){
@@ -31,7 +33,6 @@ const Characters = ({characters, id}) => {
         
         actions.addFavorites(id);
     }
-
     return (
        
             <div className="col-12 col-sm-6 col-md-4 col-lg-3 m-3 border border-primary ">
@@ -49,8 +50,8 @@ const Characters = ({characters, id}) => {
                             <Link to={`/character/${id}`} className="btn btn-outline-primary mt-2">
                                 Lean more!
                             </Link>
-                            <button onClick={()=>changeIcon(id)} type="button" className="btn btn-outline-warning mt-2">
-                                {heartIcon
+                            <button onClick={()=> changeIcon(id)} type="button" className="btn btn-outline-warning mt-2">
+                                {heartIcon 
                                 ?<i className="fa-solid fa-heart"></i>
                                 :<i className="fa-regular fa-heart"></i>
                                 }
