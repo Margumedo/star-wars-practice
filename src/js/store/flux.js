@@ -2,10 +2,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 	
 	return {
 		store: {
+			
 			urlBase: 'https://www.swapi.tech/api/',
-			people: [],
-			planets: [],
-			vehicles:[],
+			people: JSON.parse(localStorage.getItem('people'))  || [],
+			planets: JSON.parse(localStorage.getItem('planets')) || [],
+			vehicles:JSON.parse(localStorage.getItem('vehicles')) || [],
 			elements: ["people","planets","vehicles"],
 			favorites: [],
 			heartIcon: false,
@@ -18,7 +19,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 					store.elements.forEach( async element => {
-						let response = await fetch(`${store.urlBase}${element}`)
+
+						if(store[element].length<= 0){
+							let response = await fetch(`${store.urlBase}${element}`)
 						if (response.ok){
 							let data = await response.json();
 							//console.log(data.results);
@@ -35,6 +38,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 										//planet:  store.planet, dataTwo.result
 										//people:  store.people, dataTwo.result
 									})
+									
+									 	localStorage.setItem(element, JSON.stringify([...store[element],dataTwo.result]));
+
+									
 
 								}else{
 									console.log("Epa bro no funciono el segundo fecth")
@@ -44,6 +51,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}else{
 							console.log("Epa bro no funciono el primer fecth")
 						}
+						}
+
+						
 
 					});
 					
@@ -66,6 +76,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						...store,
 						characters: data.results
 					})
+						
+					
 					}else{
 						console.log('Epa bro no funciono revisa!')
 					}

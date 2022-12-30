@@ -17,8 +17,8 @@ const params = useParams();
 
 const {character_id} = params;
 
-const character = store.people.find(element=>element.uid == character_id )
-console.log(character?.properties.name)
+console.log(store.people)
+const character = store.people.find(element=>element._id == character_id )
 
   return (
     <div className="container my-3">

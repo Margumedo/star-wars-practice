@@ -19,7 +19,7 @@ const PlanetDetail = ()=>{
     const params = useParams();
     const {planet_id} = params;
 
-    const planet = store.planets.find(element=>element.uid == planet_id )
+    const planet = store.planets.find(element=>element._id == planet_id )
     console.log(planet?.properties.name)
 
     //funcion para extraer el planeta
