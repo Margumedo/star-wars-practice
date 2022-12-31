@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 
 //image
-import rigoBaby from "../../img/rigo-baby.jpg";
+import starWarsCharacters from "../../img/Star-wars-characters.png";
 
 //context
 import {Context} from "../store/appContext.js"
@@ -28,8 +28,8 @@ const PlanetDetail = ()=>{
         <div className="container my-3">
             <div className="row ">
                 <div className="col-12 d-flex justify-content-between align-items-center">
-                        <img className="" src={rigoBaby} alt="Imagen del personaje" />
-                    <div className="text-center  ">
+                        <img className="detail-image" src={starWarsCharacters} alt="Imagen del personaje" />
+                    <div className="text-center text-light  ">
                         <h1>{planet?.properties.name}</h1>
                         <p>
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem

@@ -1,3 +1,14 @@
+body{
+
+  background-image: url("https://vidcdn.123rf.com/450nwm/billbell1960/billbell19601406/billbell1960140600098.jpg");
+
+
+}
+
+.back{
+  background-image: url("https://vidcdn.123rf.com/450nwm/billbell1960/billbell19601406/billbell1960140600098.jpg");
+}
+
 .slider-container {
   
   height: 450px;
@@ -6,3 +17,30 @@
 
   }
 
+  .slider-container::-webkit-scrollbar {
+   
+      height:10px;
+      background-color: black;
+      
+    }
+
+    .slider-container::-webkit-scrollbar-thumb {
+
+     background-color: rgba(0, 0, 255, 0.829);
+      border-radius: 5px;
+    }
+
+.image-nav{
+  height: 50px;
+  width: 100px;
+}
+
+.card{
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #0d6efd;
+}
+
+.detail-image{
+  max-width: 500px;
+  min-width: 200px;
+}

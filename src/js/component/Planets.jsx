@@ -16,16 +16,16 @@ const Planets = ({planets, id})=>{
     const{name, population, terrain} = planets
   
     return(
-        <div className="col-12 col-sm-6 col-md-4 col-lg-3 m-3 border border-primary ">
-        <div className="card" >
+        <div className="col-12 col-sm-6 col-md-4 col-lg-3 m-3  ">
+        <div className="card " >
             <img src={starWarsImage} className="card-img-top" alt="..." />
-            <div className="card-body">
+            <div className="card-body back text-light">
                 <h5 className="card-title"> <b>{name}</b> </h5><br />
                 <span className="card-text">Population: {population}</span><br />
                 <p className="card-text">Terrain: {terrain}</p>
                 <div className="d-flex justify-content-between">
                     <Link to={`/planet/${id}`} className="btn btn-outline-primary mt-2">
-                        Lean more!
+                        Learn more!
                     </Link>
                     <button onClick={()=>actions.addFavorites(id)} type="button" className="btn btn-outline-warning mt-2">
                     {store.favorites.find(element=>element._id == id ) 

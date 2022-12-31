@@ -1,13 +1,16 @@
 import React, { useContext } from "react";
 
 //image
-import rigoBaby from "../../img/rigo-baby.jpg";
+import starWarsCharacters from "../../img/Star-wars-characters.png";
 
 //context
 import {Context} from "../store/appContext.js"
 
 //params
 import { useParams } from "react-router";
+
+//styles
+import '../../styles/home.css'
 
 const CharacterDetail = () => {
 
@@ -24,10 +27,10 @@ const character = store.people.find(element=>element._id == character_id )
     <div className="container my-3">
       <div className="row ">
         <div className="col-12 d-flex justify-content-between align-items-center">
-          <img className="" src={rigoBaby} alt="Imagen del personaje" />
-          <div className="text-center">
-            <h1>{character?.properties.name}</h1>
-            <p>
+          <img className="detail-image" src={starWarsCharacters} alt="Imagen del personaje" />
+          <div className="text-center text-light m-3 ">
+            <h1 >{character?.properties.name}</h1>
+            <p >
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem
               molestiae nihil pariatur. Laudantium natus, veritatis eum
               voluptatibus consectetur suscipit maxime deserunt aliquid,
